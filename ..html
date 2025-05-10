@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anneler Günün Kutlu Olsun</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #fce4ec;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #f8bbd0;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #c2185b;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #880e4f;
+            font-style: italic;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            color: #c2185b;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f8bbd0;
+            padding-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #ad1457;
+        }
+
+        .photo-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 20px 0;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .photo {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .photo:hover {
+            transform: scale(1.02);
+        }
+
+        .countdown {
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 20px 0;
+            color: #c2185b;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f8bbd0;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        button {
+            background-color: #c2185b;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #880e4f;
+        }
+
+        .heart {
+            display: inline-block;
+            color: #c2185b;
+            font-size: 1.5rem;
+            animation: beat 1.5s infinite;
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #message-form {
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        textarea {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #f8bbd0;
+            margin-bottom: 10px;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(255, 0, 127, 0.1), 0 0 0 8px rgba(255, 0, 127, 0.1), 0 0 20px rgba(255, 0, 127, 1);
+            animation: firework 2s ease-in-out infinite;
+        }
+
+        @keyframes firework {
+            0% { transform: translate(0, 0); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)); opacity: 0; }
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            height: 200px;
+            margin: 20px 0;
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8bbd0;
+            font-size: 1.2rem;
+            padding: 20px;
+            text-align: center;
+            color: #880e4f;
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(194, 24, 91, 0.7);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .carousel-control:hover {
+            background-color: rgba(136, 14, 79, 0.9);
+        }
+
+        .carousel-control.prev {
+            left: 10px;
+        }
+
+        .carousel-control.next {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Anneler Günün Kutlu Olsun</h1>
+        <p class="subtitle">Hayatımın en değerli kadını</p>
+    </header>
+
+    <div class="card">
+        <h2>Hayatımın Annesi</h2>
+        <p>Sevgili eşim,</p>
+        <p>Bu özel günde, hem harika bir eş hem de müthiş bir anne olduğun için sana teşekkür etmek istedim. Ailemiz için yaptığın tüm fedakarlıklar, gösterdiğin sonsuz sevgi ve verdiğin emek için minnettarım.</p>
+        <p>Çocuklarımıza gösterdiğin <span class="highlight">sevgi</span>, <span class="highlight">sabır</span> ve <span class="highlight">özen</span> her gün beni hayrete düşürüyor. Sen sadece harika bir anne değil, aynı zamanda onlar için mükemmel bir rol modelsin.</p>
+        <p>Bu Anneler Günü'nde seni ne kadar sevdiğimizi ve değer verdiğimizi bilmeni istiyorum.</p>
+    </div>
+
+    <div class="card">
+        <h2>Neden Seni Seviyoruz?</h2>
+        <div class="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item">Her zaman yanımızda olduğun için</div>
+                <div class="carousel-item">Bizi her koşulda desteklediğin için</div>
+                <div class="carousel-item">En güzel yemekleri pişirdiğin için</div>
+                <div class="carousel-item">Bize sabırla her şeyi öğrettiğin için</div>
+                <div class="carousel-item">Her zaman gülümsediğin ve bizi güldürdüğün için</div>
+                <div class="carousel-item">Dünyanın en iyi öpücüklerini ve sarılmalarını verdiğin için</div>
+            </div>
+            <button class="carousel-control prev">&lt;</button>
+            <button class="carousel-control next">&gt;</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Bizim Fotoğrafımız</h2>
+        <p>Seninle en güzel anımız:</p>
+        <div class="photo-container">
+            <img src="WhatsApp%20Image%202025-05-10%20at%2020.22.46_91a6204b.jpg" alt="Ailemizin güzel anısı" class="photo" id="family-photo">
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Sana Özel Mesajım</h2>
+        <p id="special-message">Aç bakalım içinden ne çıkacak...</p>
+        <button id="reveal-btn">Mesajı Göster</button>
+        <div id="hidden-message" class="hidden">
+            <p>Sevgili eşim,</p>
+            <p>Seninle geçirdiğim her an için şükrediyorum. Çocuklarımıza verdiğin sevgi, hayatımıza kattığın anlam ve birlikte kurduğumuz yuva için teşekkür ederim.</p>
+            <p>Sadece bugün değil, her gün seni seviyorum ve Anneler Günün Kutlu Olsun!</p>
+            <p><span class="heart">♥</span> Sonsuza kadar senin <span class="heart">♥</span></p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Senin İçin Dileklerim</h2>
+        <div id="wishes">
+            <button class="wish-btn">Bir Dilekte Bulun</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Seni çok seviyoruz! <span class="heart">♥</span></p>
+        <p>Anneler Günün Kutlu Olsun</p>
+    </footer>
+</div>
+
+<script>
+    // Resim zaten HTML'de tanımlandı, yükleme kodu gerekmez
+    window.onload = function() {
+        // Görüntü yükleme tamamlandığında fotoğrafın düzgün görüntülendiğinden emin olunur
+        const img = document.getElementById('family-photo');
+        img.onload = function() {
+            console.log("Fotoğraf başarıyla yüklendi");
+        };
+    }
+
+    // Özel mesajı gösterme fonksiyonu
+    document.getElementById('reveal-btn').addEventListener('click', function() {
+        document.getElementById('special-message').style.display = 'none';
+        document.getElementById('hidden-message').classList.remove('hidden');
+
+        // Havai fişek efekti
+        for (let i = 0; i < 20; i++) {
+            createFirework();
+        }
+    });
+
+    // Havai fişek efekti oluşturma
+    function createFirework() {
+        const firework = document.createElement('div');
+        firework.classList.add('firework');
+
+        // Rastgele başlangıç pozisyonu
+        const startX = window.innerWidth / 2 - 250 + Math.random() * 500;
+        const startY = window.innerHeight - 100;
+
+        // Rastgele bitiş pozisyonu
+        const endX = (Math.random() - 0.5) * 500;
+        const endY = -Math.random() * 400;
+
+        firework.style.left = startX + 'px';
+        firework.style.top = startY + 'px';
+        firework.style.setProperty('--x', endX + 'px');
+        firework.style.setProperty('--y', endY + 'px');
+
+        // Rastgele renk
+        const colors = ['#ff0080', '#ff00ff', '#8000ff', '#0080ff', '#00ffff'];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        firework.style.backgroundColor = color;
+
+        document.body.appendChild(firework);
+
+        // Animasyon bitince elementi kaldır
+        setTimeout(() => {
+            document.body.removeChild(firework);
+        }, 2000);
+    }
+
+    // Dilek butonları oluşturma
+    const wishes = [
+        "Sağlıklı ve mutlu bir yıl",
+        "Bol dinlenme fırsatları",
+        "Hayalini kurduğun tatil",
+        "Stressiz günler",
+        "Daha çok gülümseme",
+        "Huzurlu anlar"
+    ];
+
+    const wishesDiv = document.getElementById('wishes');
+    const wishBtn = document.querySelector('.wish-btn');
+
+    wishBtn.addEventListener('click', function() {
+        // Butonu kaldır
+        wishesDiv.removeChild(wishBtn);
+
+        // Dilekleri ekle
+        wishes.forEach(wish => {
+            const button = document.createElement('button');
+            button.textContent = wish;
+            wishesDiv.appendChild(button);
+
+            // Butonlara tıklama özelliği
+            button.addEventListener('click', function() {
+                button.textContent = "✓ " + wish + " (Dileğin gerçekleşecek!)";
+                button.style.backgroundColor = "#4caf50";
+                button.disabled = true;
+            });
+        });
+    });
+
+    // Carousel fonksiyonu
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-item');
+    const totalSlides = slides.length;
+    const carouselInner = document.querySelector('.carousel-inner');
+
+    // Carousel otomatik geçiş
+    setInterval(() => {
+        nextSlide();
+    }, 3000);
+
+    // Next butonu
+    document.querySelector('.carousel-control.next').addEventListener('click', function() {
+        nextSlide();
+    });
+
+    // Prev butonu
+    document.querySelector('.carousel-control.prev').addEventListener('click', function() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateCarousel();
+    });
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateCarousel();
+    }
+
+    function updateCarousel() {
+        carouselInner.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+</script>
+</body>
+</html>
